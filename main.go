@@ -226,7 +226,7 @@ func main() {
 
 	fmt.Println("Iniciando servidor ...")
 	
-	http_port := ":" + getEnvVar("PORT")
+	http_port := ":" + getEnvVar("PUERTO")
 
 	router := mux.NewRouter().StrictSlash(false)
 	router.HandleFunc("/iniciarCarga", iniciarCarga).Methods("GET")
