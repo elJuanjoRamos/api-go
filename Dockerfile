@@ -6,7 +6,7 @@ COPY go.sum ./
 RUN go mod download
 COPY *.go ./
 COPY *.json ./
-COPY .env ./
+
 
 RUN go build -o /docker-gs-ping
 EXPOSE 2000
