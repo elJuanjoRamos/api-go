@@ -226,17 +226,14 @@ func main() {
 
 	fmt.Println("Iniciando servidor ...")
 	
-	http_port := ":" + getEnvVar("PUERTO")
+	
 
 	router := mux.NewRouter().StrictSlash(false)
 	router.HandleFunc("/iniciarCarga", iniciarCarga).Methods("GET")
 	router.HandleFunc("/publicar", publicar).Methods("POST")
 	router.HandleFunc("/finalizarCarga", finalizarCarga).Methods("GET")
-	log.Println("Listening at port 2000")
-	log.Fatal(http.ListenAndServe(":2000", router))
 
-
-	if err := http.ListenAndServe(http_port, nil); err != nil {
+	if err := http.ListenAndServe(":2000", nil); err != nil {
 		fmt.Println("Error al levantar el servidor")
 	} else {
 		fmt.Println("Servidor iniciado en el puerto " + http_port)
