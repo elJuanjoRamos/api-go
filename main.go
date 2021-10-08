@@ -236,7 +236,7 @@ func main() {
 	if err := http.ListenAndServe(":2000", nil); err != nil {
 		fmt.Println("Error al levantar el servidor")
 	} else {
-		fmt.Println("Servidor iniciado en el puerto " + http_port)
+		fmt.Println("Servidor iniciado en el puerto 2000")
 	}
 
 }
