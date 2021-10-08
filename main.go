@@ -11,7 +11,6 @@ import (
 	"github.com/gorilla/mux"
 	"strconv"
 	"strings"
-	"github.com/joho/godotenv"
 	"cloud.google.com/go/pubsub"		
 	"google.golang.org/api/option"
 	"golang.org/x/oauth2/google"
@@ -150,13 +149,6 @@ func makeResponse(message string) []byte {
 	return jsonResp
 }
 
-func getEnvVar(key string) string {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error al cargar las variables de entorno")
-	}
-	return os.Getenv(key)
-}
 
 func publish(seconds int) error {
 	PROJECT_ID := "sopes-326122"
@@ -231,11 +223,7 @@ func main() {
 	router.HandleFunc("/iniciarCarga", iniciarCarga).Methods("GET")
 	router.HandleFunc("/publicar", publicar).Methods("POST")
 	router.HandleFunc("/finalizarCarga", finalizarCarga).Methods("GET")
-
-	if err := http.ListenAndServe(":2000", nil); err != nil {
-		fmt.Println("Error al levantar el servidor")
-	} else {
-		fmt.Println("Servidor iniciado en el puerto 2000")
-	}
+	log.Println("Listening at port 2000")
+	log.Fatal(http.ListenAndServe(":2000", router))
 
 }
