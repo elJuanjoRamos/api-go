@@ -9,5 +9,5 @@ COPY *.json ./
 
 
 RUN go build -o /docker-gs-ping
-EXPOSE 2000
+
 CMD [ "/docker-gs-ping" ]

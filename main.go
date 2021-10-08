@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"context"
 	"io/ioutil"
 	"encoding/json"
@@ -22,8 +21,8 @@ import (
 	"database/sql"
 )
 
-var MONGO_URI = getEnvVar("MONGO_URI")
-var MYSQL_URI = getEnvVar("MYSQL_URI")
+var MONGO_URI = "mongodb://sopes-cosmo-mongo:tWAzVW70NCpvAdz9k3ZybGAZGf6m8GMxD43zLXOJUPmKwUOhHBsg6XOQuWAiOgfmK2BvPh3Xzaykbadw4xfSyA==@sopes-cosmo-mongo.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@sopes-cosmo-mongo@"
+var MYSQL_URI = "root:root@tcp(35.225.221.182)/Tweets"
 var mysqlClient *sql.DB
 var mongoClient *mongo.Client
 var cant_tweets = 0
@@ -160,8 +159,8 @@ func getEnvVar(key string) string {
 }
 
 func publish(seconds int) error {
-	PROJECT_ID := getEnvVar("PROJECT_ID")
-	TOPIC_ID := getEnvVar("TOPIC_ID")
+	PROJECT_ID := "sopes-326122"
+	TOPIC_ID := "notificacion-carga"
 
 	ctx := context.Background()
 
